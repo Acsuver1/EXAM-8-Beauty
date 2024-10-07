@@ -3,7 +3,6 @@
 import React from 'react';
 import { Product } from '../../api/makeupApi';
 import ProductCard from '../ProductCard/ProductCard';
-import Banner from '../banner/Banner';
 
 interface ProductListProps {
   products: Product[];

@@ -1,18 +1,19 @@
 import React, { useState, useRef } from 'react'; 
 import { useGetAllProductsQuery } from '../../api/makeupApi';
-import ProductList from '../../components/ProductList/ProductList';
+// import ProductList from '../../components/ProductList/ProductList';
 import intro from '../../assets/new.mp4';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'; 
-import { Product } from '../../api/makeupApi'; // Import the Product type
+// import { Product } from '../../api/makeupApi'; 
 import Cards from '../../components/cards/Cards';
 import Section from '../../components/section/Section';
 import Banner from '../../components/banner/Banner';
+import "./Home.css"
 
 const Home: React.FC = () => {
   const { data: products, error, isLoading } = useGetAllProductsQuery();
   const [isMuted, setIsMuted] = useState(true); 
-  const [likedItems, setLikedItems] = useState<Product[]>([]); 
+  // const [likedItems, setLikedItems] = useState<Product[]>([]); 
   const videoRef = useRef<HTMLVideoElement>(null); 
 
   const toggleMute = () => {
@@ -76,7 +77,7 @@ const Home: React.FC = () => {
       <section id="products" className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-pink-600 mb-8 ">Featured Products</h2>
-          <ProductList products={products || []} setLikedItems={setLikedItems} /> 
+          {/* <ProductList products={products || []} setLikedItems={setLikedItems} />  */}
         </div>
       </section>
     </div>

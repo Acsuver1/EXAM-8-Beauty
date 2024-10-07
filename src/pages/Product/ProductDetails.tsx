@@ -1,15 +1,15 @@
 // src/pages/Product/ProductDetails.tsx
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../api/makeupApi';
 import { ShoppingCartIcon } from '@heroicons/react/outline';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../store/cartSlice';
+// import { useDispatch } from 'react-redux';
+// import { addToCart } from '../../store/cartSlice';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data: product, error, isLoading } = useGetProductByIdQuery(Number(id));
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   if (isLoading) {
     return (
@@ -31,7 +31,7 @@ const handleAddToCart = () => {
     quantity: 1,
   };
 
-  dispatch(addToCart(cartItem));
+  // dispatch(addToCart(cartItem));
 
   const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
   savedCart.push(cartItem);

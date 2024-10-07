@@ -1,6 +1,6 @@
 // src/components/Header.tsx
 
-import React, { useEffect, useState, useContext, ChangeEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { RiShoppingCartFill } from "react-icons/ri"; 
 import { FcLike } from "react-icons/fc";

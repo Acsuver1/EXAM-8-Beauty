@@ -19,3 +19,12 @@ button:hover {
   transform: scale(1.1); /* Scale effect on hover */
   transition: transform 0.2s ease; /* Smooth transition */
 }
+.video {
+  filter: brightness(0.5) blur(1.8px);
+}
+
+/* Loader */
+.loader {
+  border-color: #e2e8f0;
+  border-top-color: #3b82f6; /* Blue color for top */
+}
