@@ -80,7 +80,7 @@ const Home: React.FC = () => {
       <Cards />
       <Section />
 
-      {featuredProduct && <Banner product={featuredProduct} />}
+      {  <Banner  />}
     </>
   );
 };
