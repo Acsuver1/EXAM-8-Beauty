@@ -1,0 +1,21 @@
+/* Add this to your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Fjalla+One&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif; /* Main font family */
+}
+
+h1 {
+  font-family: 'Fjalla One', sans-serif; /* Unique font for headings */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+button {
+  font-family: 'Roboto', sans-serif; /* Ensure button text uses the main font */
+}
+
+/* Style for the mute/unmute button */
+button:hover {
+  transform: scale(1.1); /* Scale effect on hover */
+  transition: transform 0.2s ease; /* Smooth transition */
+}
