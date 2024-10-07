@@ -9,7 +9,7 @@ import Banner from '../../components/banner/Banner';
 import "./Home.css"
 
 const Home: React.FC = () => {
-  const { data: products, error, isLoading } = useGetAllProductsQuery();
+  const { data:  error, isLoading } = useGetAllProductsQuery();
   const [isMuted, setIsMuted] = useState(true); 
   const videoRef = useRef<HTMLVideoElement>(null); 
 
