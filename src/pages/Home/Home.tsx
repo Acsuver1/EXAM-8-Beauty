@@ -32,7 +32,6 @@ const Home: React.FC = () => {
     );
   }
 
-  const featuredProduct = products && products.length > 0 ? products[0] : null;
 
   return (
     <>
