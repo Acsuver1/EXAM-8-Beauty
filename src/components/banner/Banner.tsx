@@ -75,9 +75,11 @@ const Banner: React.FC<BannerProps> = ({ featuredProduct }) => {
           <p className="mb-6 text-[20px] leading-relaxed text-gray-500">
             Looking for five-star formulas, minus the price tag? From skincare essentials to makeup must-haves and results-driven haircare, BY BEAUTY BAY has everything you need to discover your next best obsession.
           </p>
+          <Link to="/category">
           <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 transition duration-300 shadow-md">
             Shop Now
           </button>
+          </Link>
         </div>
       </div>
     </div>

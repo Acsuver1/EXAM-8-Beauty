@@ -1,0 +1,18 @@
+/* Spinner styles */
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1); /* Light border */
+    border-left-color: #3498db; /* Main color */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Size of the spinner */
+    height: 50px; /* Size of the spinner */
+    animation: spin 1s linear infinite; /* Spin animation */
+    margin: 0 auto; /* Center the spinner */
+  }
+  
+  /* Spin animation */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

@@ -1,38 +1,31 @@
-
-
 import React from 'react';
+import { useGetAllProductsQuery } from '../../api/makeupApi';
 import { Product } from '../../api/makeupApi';
-import ProductCard from '../ProductCard/ProductCard';
 
-interface ProductListProps {
-  products: Product[];
-  setLikedItems: React.Dispatch<React.SetStateAction<Product[]>>; 
-}
+const ProductList = () => {
+  const { data, error, isLoading } = useGetAllProductsQuery();
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-const ProductList: React.FC<ProductListProps> = ({ products, }) => {
-  const displayedProducts = products.slice(0, 8); 
+  if (error && 'message' in error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (error) {
+    return <div>Error: An unknown error occurred</div>;
+  }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {displayedProducts.length === 0 ? (
-        <p className="text-center text-gray-600">No products found.</p>
-      ) : (
-       <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {displayedProducts.map((product) => (
-            <ProductCard 
-              product={product} 
-              key={product.id}
-            /> 
-          ))}
-        </div>
-
-        
-       </>
-      )}
-    </div>
+    <ul>
+      {data?.map((product) => (
+        <li key={product.id}>
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
+          <p>Price: {product.price}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
-
-export default ProductList;

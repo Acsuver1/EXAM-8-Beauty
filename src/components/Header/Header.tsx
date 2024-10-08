@@ -4,6 +4,7 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { RiShoppingCartFill } from "react-icons/ri"; 
 import { FcLike } from "react-icons/fc";
+import { MdCategory } from "react-icons/md"; // Yangi import qilingan ikon
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import beauty from "../../assets/beauty.png";
 import { Product } from '../../api/makeupApi';
@@ -48,10 +49,12 @@ const Header: React.FC = () => {
 
   return (
     <div>
-      <div className="bg-black text-white text-center py-2">
-        <h1 className="text-sm">
+     
+      <div className="bg-black flex justify-between items-center px-4 md:px-40 text-white text-center py-2">
+        <h1 className="text-sm text-center mx-auto">
           Get 15% off selected items when you spend 70€ with code: YAY
         </h1>
+        <h1 className="text-sm text-pink-600 cursor-pointer">Download the app </h1>
       </div>
 
       <div className="bg-gray-100 text-black text-center py-2 border-b flex flex-col md:flex-row justify-between items-center px-4 md:px-10 space-y-2 md:space-y-0">
@@ -59,7 +62,7 @@ const Header: React.FC = () => {
           FREE Liquid Cream Blush when you spend 50€ on By BEAUTY BAY | Download the app for exclusive offers and discounts 
         </h1>
         <div className="flex justify-center items-center space-x-4">
-          {/* Language Select with Visually Hidden Label */}
+         
           <label htmlFor="language-select" className="visually-hidden">
             Language
           </label>
@@ -91,12 +94,14 @@ const Header: React.FC = () => {
 
       <header className="bg-white shadow sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+         
           <div className="flex items-center">
             <Link to="/"> 
               <img src={beauty} alt="Beauty Bay" className="w-[120px]" />
             </Link>
           </div>
 
+        
           <div className="flex-grow mx-8">
             <input
               type="text"
@@ -105,7 +110,14 @@ const Header: React.FC = () => {
             />
           </div>
 
+          
           <div className="flex items-center space-x-4">
+            {/* Category Icon */}
+            <Link to="/category" className="relative" aria-label="Category">
+              <MdCategory className="text-3xl text-gray-700 hover:text-pink-600 cursor-pointer" />
+            </Link>
+
+           
             <Link to="/cart" className="relative">
               <RiShoppingCartFill className="text-3xl" /> 
               <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
@@ -113,12 +125,15 @@ const Header: React.FC = () => {
               </span>
             </Link>
 
-            <Link to="/likes" className="relative">
+            
+            <Link to="/likes" className="relative" aria-label="Likes">
               <FcLike className="text-3xl" />
               <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full"> 
+               
               </span>
             </Link>
 
+           
             <button
               className="md:hidden focus:outline-none"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -133,6 +148,7 @@ const Header: React.FC = () => {
           </div>
         </div>
 
+       
         {menuOpen && (
           <div className="md:hidden bg-white shadow">
             <nav className="px-4 py-2 space-y-2">
@@ -145,25 +161,25 @@ const Header: React.FC = () => {
               <Link to="/category/eyeshadow" className="block text-gray-700 hover:text-pink-600 transition">
                 Eyeshadows
               </Link>
-             
             </nav>
           </div>
         )}
       </header>
 
+     
       <div className="bg-white py-6">
         <div className="container mx-auto flex justify-center space-x-8 flex-wrap">
-          <Link to="/gifting" className="text-sm text-gray-700 hover:text-black">Gifting</Link>
-          <Link to="/offers" className="text-sm text-gray-700 hover:text-black">Offers</Link>
-          <Link to="/about" className="text-sm text-gray-700 hover:text-black">By BEAUTY BAY</Link>
-          <Link to="/new-trending" className="text-sm text-gray-700 hover:text-black">New & Trending</Link>
-          <Link to="/brands" className="text-sm text-gray-700 hover:text-black">Brands</Link>
-          <Link to="/makeup" className="text-sm text-gray-700 hover:text-black">Makeup</Link>
-          <Link to="/skincare" className="text-sm text-gray-700 hover:text-black">Skincare</Link>
-          <Link to="/haircare" className="text-sm text-gray-700 hover:text-black">Haircare</Link>
-          <Link to="/body-care" className="text-sm text-gray-700 hover:text-black">Body Care</Link>
-          <Link to="/wellness" className="text-sm text-gray-700 hover:text-black">Wellness</Link>
-          <Link to="/tools-accessories" className="text-sm text-gray-700 hover:text-black">Tools & Accessories</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Gifting</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Offers</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">By BEAUTY BAY</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">New & Trending</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Brands</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Makeup</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Skincare</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Haircare</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Body Care</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Wellness</Link>
+          <Link to="/category" className="text-sm text-gray-700 hover:text-black">Tools & Accessories</Link>
         </div>
       </div>
       

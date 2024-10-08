@@ -25,12 +25,15 @@ export const makeupApi = createApi({
     getAllProducts: builder.query<Product[], void>({
       query: () => 'products.json',
     }),
-    getProductsByCategory: builder.query<Product[], { brand: string; product_type: string }>({
-      query: ({ brand, product_type }) =>
-        `products.json?brand=${brand}&product_type=${product_type}`,
+    getProductsByCategory: builder.query<Product[], { category: string; brand: string; product_type: string }>({
+      query: ({ category, brand, product_type }) =>
+        `products.json?category=${category}&brand=${brand}&product_type=${product_type}`,
     }),
     getProductById: builder.query<Product, number>({
       query: (id) => `products/${id}.json`,
+    }),
+    getProductsByBrand: builder.query<Product[], { brand: string }>({
+      query: ({ brand }) => `products.json?brand=${brand}`,
     }),
   
   }),
@@ -40,4 +43,5 @@ export const {
   useGetAllProductsQuery,
   useGetProductsByCategoryQuery,
   useGetProductByIdQuery,
+  useGetProductsByBrandQuery,
 } = makeupApi;
