@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
-// import CategoryPage from './pages/Category/CategoryPage';
 import ProductDetails from './pages/Product/ProductDetails';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,9 +16,9 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/category/:category" element={<CategoryPage />} /> */}
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="*" element={<div>Page not found</div>} />
+            
             
           </Routes>
         </main>

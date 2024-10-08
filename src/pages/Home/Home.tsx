@@ -1,15 +1,16 @@
 import React, { useState, useRef } from 'react'; 
 import { useGetAllProductsQuery } from '../../api/makeupApi';
-import intro from '../../assets/new.mp4';
+import intro from '../../assets/liv.mp4';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'; 
 import Cards from '../../components/cards/Cards';
 import Section from '../../components/section/Section';
 import Banner from '../../components/banner/Banner';
+import ProductCard from '../../components/ProductCard/ProductCard'; 
 import "./Home.css"
 
 const Home: React.FC = () => {
-  const { data:  error, isLoading } = useGetAllProductsQuery();
+  const { data: products, error, isLoading } = useGetAllProductsQuery();
   const [isMuted, setIsMuted] = useState(true); 
   const videoRef = useRef<HTMLVideoElement>(null); 
 
@@ -32,6 +33,8 @@ const Home: React.FC = () => {
     );
   }
 
+  const featuredProducts = products ? products.slice(123,127) : []; 
+  const featuredProduct = products && products.length > 0 ? products[0] : null;
 
   return (
     <>
@@ -44,11 +47,11 @@ const Home: React.FC = () => {
             loop
             muted={isMuted} 
             className="w-full h-full object-cover absolute top-0 left-0 z-[-1] video"
-            style={{ filter: 'brightness(0.5) blur(1.8px)' }} 
+            style={{ filter: ' blur(0.5px)' }} 
           ></video>
 
           <div className="container mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-            <h1 className="text-5xl font-bold mb-6 text-rose-300 ">Welcome to BeautyBay Clone</h1>
+            <h1 className="text-6xl font-extrabold mb-6 text-pink-300    ">Welcome to BeautyBay Clone</h1>
             <p className="text-lg mb-6 flex flex-col items-center justify-center">
               Discover a wide range of beauty products curated just for you.
             </p>
@@ -71,7 +74,12 @@ const Home: React.FC = () => {
 
         <section id="products" className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center text-pink-600 mb-8 ">Featured Products</h2>
+            <h2 className="text-4xl font-bold text-center text-pink-600 mb-8">Featured Products</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </section>
       </div>
@@ -79,7 +87,7 @@ const Home: React.FC = () => {
       <Cards />
       <Section />
 
-      {  <Banner  />}
+      {featuredProduct && <Banner   featuredProduct={featuredProduct} />}
     </>
   );
 };

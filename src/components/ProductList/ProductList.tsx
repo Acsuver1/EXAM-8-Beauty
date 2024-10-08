@@ -11,7 +11,7 @@ interface ProductListProps {
 
 
 const ProductList: React.FC<ProductListProps> = ({ products, }) => {
-  const displayedProducts = products.slice(123,127); 
+  const displayedProducts = products.slice(0, 8); 
 
   return (
     <div className="container mx-auto px-4 py-8">

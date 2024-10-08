@@ -2,8 +2,16 @@ import React from 'react';
 import { useGetAllProductsQuery } from '../../api/makeupApi';
 import { Link } from 'react-router-dom';
 import beautys from "../../assets/beauty.png";
+import { Product } from '../../api/makeupApi';
 
-const Banner: React.FC = () => {
+
+interface BannerProps {
+  featuredProduct: Product & { price_sign?: string | null };
+}
+
+ 
+
+const Banner: React.FC<BannerProps> = ({ featuredProduct }) => {
   const { data: products, error, isLoading } = useGetAllProductsQuery();
 
   
@@ -15,6 +23,7 @@ const Banner: React.FC = () => {
     return <div className="text-center py-8 text-red-500">Error fetching products</div>;
   }
 
+  if (featuredProduct) {
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -74,5 +83,7 @@ const Banner: React.FC = () => {
     </div>
   );
 };
+
+}
 
 export default Banner;
