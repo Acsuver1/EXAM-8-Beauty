@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useGetProductsByCategoryQuery } from '../../api/makeupApi';
 import { useParams, Link } from 'react-router-dom';
 import { Product } from '../../api/makeupApi';
-import  './Category.css'
+import './Category.css';
 
 const CategoryPage: React.FC = () => {
   const { category: urlCategory } = useParams<{ category: string }>();
@@ -11,6 +11,7 @@ const CategoryPage: React.FC = () => {
   const [color, setColor] = useState<string>('all');
   const [minPrice, setMinPrice] = useState<number | ''>('');
   const [maxPrice, setMaxPrice] = useState<number | ''>('');
+  const [searchQuery, setSearchQuery] = useState<string>(''); 
 
   useEffect(() => {
     if (urlCategory) {
@@ -49,19 +50,19 @@ const CategoryPage: React.FC = () => {
     setMaxPrice(e.target.value ? Number(e.target.value) : '');
   };
 
-
   const uniqueProducts = data ? Array.from(new Set(data.map(p => p.id))).map(id => data.find(p => p.id === id)) : [];
-  
-  
+
   const filteredProducts = uniqueProducts.filter((product = {} as Product): product is Product => {
     const isBrandMatch = brand === 'all' || product.brand === brand;
     const isPriceMatch =
       (minPrice === '' || parseFloat(product.price) >= minPrice) &&
       (maxPrice === '' || parseFloat(product.price) <= maxPrice);
-    return isBrandMatch && isPriceMatch;
+    const isSearchMatch = product.name.toLowerCase().includes(searchQuery.toLowerCase()); 
+
+    return isBrandMatch && isPriceMatch && isSearchMatch;  
   });  
-  
-  const displayedProducts = filteredProducts.slice(210, 290); 
+
+  const displayedProducts = filteredProducts.slice(170, 250); 
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -150,12 +151,29 @@ const CategoryPage: React.FC = () => {
             placeholder="Max Price"
           />
         </div>
+
+        {/* Search Input Field */}
+        <div>
+          <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
+            Search
+          </label>
+          <input
+            type="text"
+            id="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="border border-gray-300 p-2 rounded-md w-full md:w-48"
+            placeholder="Search Products"
+          />
+        </div>
       </div>
 
-      {isLoading &&  <div className="text-center">
-    <div className="spinner"></div>
-    <p className="text-gray-600 mt-2"></p>
-  </div>}
+      {isLoading && (
+        <div className="text-center">
+          <div className="spinner"></div>
+          <p className="text-gray-600 mt-2">Loading...</p>
+        </div>
+      )}
       {error && (
         <div className="text-center text-red-500">
           {('message' in error)
@@ -165,39 +183,18 @@ const CategoryPage: React.FC = () => {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {displayedProducts && displayedProducts.length > 0 ? (
-          displayedProducts.map((product) => {
-            if (!product) return null;
-            return (
-              <div key={product.id} className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                <Link to={`/product/${product.id}`}>
-                  <img
-                    src={product.image_link || 'https://via.placeholder.com/300'}
-                    alt={product.name}
-                    className="w-full h-48 object-contain  "  
-                  />
-                </Link>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
-                  <p className="text-gray-600 text-sm mb-2">
-                    {product.description?.substring(0, 60) || 'No description available.'}...
-                  </p>
-                  <p className="text-blue-600 font-bold mb-4">Brand: {product.brand}</p>
-
-                  <p className="text-blue-600 font-bold mb-4">Category: {product.category}</p>
-
-                  <p className="text-blue-600 font-bold mb-4">Rating: {product.rating}</p>  
-
-                  <p className="text-blue-600 font-bold mb-4">Price Sign: {product.price_sign}</p>
-
-                  <p className="text-blue-600 font-bold mb-4">Price: ${product.price}</p>
-                  
-                </div>
-              </div>
-            );
-          })
+        {displayedProducts.length === 0 ? (
+          <p className="text-center text-gray-600"></p>
         ) : (
-          !isLoading && <div className="text-center text-gray-600 col-span-full">No products found in this category.</div>
+          displayedProducts.map((product: Product) => (
+            <div key={product.id} className="border border-gray-300 rounded-lg p-4">
+              <Link to={`/product/${product.id}`}>
+                <img src={product.image_link} alt={product.name} className="w-full h-48 object-contain mb-4 rounded-md" />
+                <h2 className="text-lg font-semibold">{product.name}</h2>
+                <p className="text-gray-600">Price: ${product.price}</p>
+              </Link>
+            </div>
+          ))
         )}
       </div>
     </div>
