@@ -7,7 +7,7 @@ import { FcLike } from "react-icons/fc";
 import { MdCategory } from "react-icons/md"; // Yangi import qilingan ikon
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import beauty from "../../assets/beauty.png";
-import { Product } from '../../api/makeupApi';
+import { Product } from '../../api/makeupApi';  
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);

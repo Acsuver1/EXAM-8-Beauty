@@ -15,6 +15,9 @@ export interface Product {
   rating: number | null;
   category: string | null;
   product_type: string;
+  quantity: number;
+  priceUSD: number; // Price in USD
+  priceUZS: number; // Price in UZS
  
 }
 

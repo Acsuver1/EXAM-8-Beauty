@@ -7,11 +7,11 @@ import { BsInstagram, BsFacebook, BsArrowRight } from "react-icons/bs";
 import logo from '../../assets/beauty.png';
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-gray-200 py-12">
+    <footer className="bg-gray-800 text-gray-200 py-12 mt-12 ">
        <div className=" text-white py-12 mt-12">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="flex flex-col">
-          <img src={logo} alt="Company Logo" className="w-60 mb-4" />
+          <img src={logo} alt="Company Logo" className=" w-60 mb-4 rounded-[200px]" />
         </div>
     
         <div>

@@ -183,7 +183,7 @@ const CategoryPage: React.FC = () => {
                   <img
                     src={product.image_link || 'https://via.placeholder.com/300'}
                     alt={product.name}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-contain  "  
                   />
                 </Link>
                 <div className="p-4">
@@ -191,23 +191,16 @@ const CategoryPage: React.FC = () => {
                   <p className="text-gray-600 text-sm mb-2">
                     {product.description?.substring(0, 60) || 'No description available.'}...
                   </p>
+                  <p className="text-blue-600 font-bold mb-4">Brand: {product.brand}</p>
+
+                  <p className="text-blue-600 font-bold mb-4">Category: {product.category}</p>
+
+                  <p className="text-blue-600 font-bold mb-4">Rating: {product.rating}</p>  
+
+                  <p className="text-blue-600 font-bold mb-4">Price Sign: {product.price_sign}</p>
 
                   <p className="text-blue-600 font-bold mb-4">Price: ${product.price}</p>
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="flex items-center bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition-colors"
-                    >
-                      <RiShoppingCartFill className="mr-1" /> Add to Cart
-                    </button>
-                    <button
-                      onClick={() => addToLikes(product)}
-                      className="text-2xl hover:scale-110 transition-transform"
-                      aria-label="Add to Likes"
-                    >
-                      <FcLike />
-                    </button>
-                  </div>
+                  
                 </div>
               </div>
             );
