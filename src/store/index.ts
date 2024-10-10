@@ -1,14 +1,12 @@
 // src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './cartSlice'; // Ensure this path is correct
-import currencyReducer from './currenSlice';
 
 const store = configureStore({
   reducer: {
     cart: cartReducer,
   },
 });
-
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
