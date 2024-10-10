@@ -2,8 +2,6 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useGetProductsByCategoryQuery } from '../../api/makeupApi';
 import { useParams, Link } from 'react-router-dom';
 import { Product } from '../../api/makeupApi';
-import { RiShoppingCartFill } from "react-icons/ri";
-import { FcLike } from "react-icons/fc";
 import  './Category.css'
 
 const CategoryPage: React.FC = () => {
@@ -51,13 +49,6 @@ const CategoryPage: React.FC = () => {
     setMaxPrice(e.target.value ? Number(e.target.value) : '');
   };
 
-  const addToCart = (product: Product) => {
-    console.log('Add to cart:', product);
-  };
-
-  const addToLikes = (product: Product) => {
-    console.log('Add to likes:', product);
-  };
 
   const uniqueProducts = data ? Array.from(new Set(data.map(p => p.id))).map(id => data.find(p => p.id === id)) : [];
   
